@@ -39,27 +39,32 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// app.post("/register", async (req, res) => {
-//   const { name, mail } = req.body;
-//   let client;
+app.post("/login", async (req, res) => {
+  const { mail, password } = req.body;
+  let client;
 
-//   try {
-//     client = new MongoClient(url, { useUnifiedTopology: true });
-//     await client.connect();
-//     console.log("Connected to MongoDB");
-//     const db = client.db("test");
-//     const collection = db.collection("testreact");
-//     const user = await collection.findOne({ name, mail });
-//     if (user) {
-//       const { _id, name, mail } = user;
-//       console.log(_id);
-//       console.log(name);
-//       console.log(mail);
-//     }
-//   } catch (err) {
-//     console.error("Error:", err);
-//     res.status(500).json({ error: "An error occurred" });
-//   }
+  try {
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connected to MongoDB");
+    const db = client.db("test");
+    const collection = db.collection("testreact");
 
-//   res.json({ message: "Form data received successfully" });
-// });
+    const user = await collection.findOne({ mail });
+
+    if (user) {
+      const { _id, name, mail } = user;
+      console.log(mail);
+      console.log(user.password);
+      console.log(password);
+      if (password === user.password) {
+        res.json({ message: "logged in successfully" });
+      } else {
+        res.json({ message: "Incorrect Password" });
+      }
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
