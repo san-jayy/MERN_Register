@@ -9,7 +9,9 @@ function Login() {
   const [message, setmessage] = useState("log in");
 
   const handleLogin = async (event) => {
+    console.log(`mail : ${mail} pass ${password}`);
     event.preventDefault();
+
     const response = await axios.post("http://localhost:5000/login", {
       mail,
       password,
