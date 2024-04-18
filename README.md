@@ -1,1 +1,1 @@
-login and Registration with MERN
+login and Registration with MERN stack
