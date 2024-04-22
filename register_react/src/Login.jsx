@@ -45,7 +45,7 @@ function Login() {
         <input type="submit" value="login" />
       </form>
       <p>{message}</p> <br />
-      <Link to={"/Register"}>Register</Link>
+      <Link to={"/Register"}>Register here</Link>
     </>
   );
 }
