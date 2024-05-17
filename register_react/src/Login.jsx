@@ -19,7 +19,7 @@ function Login() {
     setmessage(response.data.message);
     setmail("");
     setpassword("");
-    console.log("Login Success:", response.data);
+    console.log(response.data);
   };
   return (
     <div style={styles.container}>
