@@ -7,7 +7,8 @@ const app = express();
 const port = 5000;
 app.use(bodyParser.json());
 app.use(cors());
-var url = "mongodb://localhost:27017/";
+var url =
+  "mongodb+srv://sanjayspace66:sanjay.space.mongo@cluster0.p9ehkfa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 app.listen(port, () => {
   console.log(`server is up and running at port ${port}`);
@@ -42,7 +43,6 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { mail, password } = req.body;
   let client;
-
   try {
     client = new MongoClient(url, { useUnifiedTopology: true });
     await client.connect();
@@ -51,12 +51,9 @@ app.post("/login", async (req, res) => {
     const collection = db.collection("testreact");
 
     const user = await collection.findOne({ mail });
-
+    console.log(user);
     if (user) {
       const { _id, name, mail } = user;
-      console.log(mail);
-      console.log(user.password);
-      console.log(password);
       if (password === user.password) {
         res.json({ message: "logged in successfully" });
       } else {
