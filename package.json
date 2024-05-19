@@ -1,0 +1,6 @@
+{
+  "homepage": "https://<Username>.github.io/<Repository-name>",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

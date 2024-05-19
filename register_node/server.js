@@ -51,10 +51,12 @@ app.post("/login", async (req, res) => {
     const collection = db.collection("testreact");
 
     const user = await collection.findOne({ mail });
-    console.log(user);
+    console.log("user");
+
     if (user) {
       const { _id, name, mail } = user;
       if (password === user.password) {
+        console.log(user.mail);
         res.json({ message: "logged in successfully" });
       } else {
         res.json({ message: "Incorrect Password" });
